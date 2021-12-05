@@ -4,21 +4,24 @@ import java.util.*;
 
 public class StudentList {
 	static String readFile() throws IOException {
-		BufferedReader s=null;
+		BufferedReader s = null;
 		try {
-			 s = new BufferedReader(new InputStreamReader(new FileInputStream(Constants.FILENAME)));
+			s = new BufferedReader(new InputStreamReader(new FileInputStream(Constants.FILENAME)));
 			return s.readLine();
 		} catch (Exception e) {
 			System.out.println(Constants.NOT_FOUND);
 			return null;
-		}
-		finally {
+		} finally {
 			s.close();
 		}
 	}
+
 	public static void main(String[] args) {
 
 		// Check arguments
+		if (args.length == 0) {
+			System.out.println("No Arguments.");
+		}
 		for (int len = 0; len < args.length; ++len) {
 			if (args[len].equals("a")) {
 				System.out.println(Constants.LOADING);
@@ -34,7 +37,7 @@ public class StudentList {
 				System.out.println(Constants.LOADING);
 				try {
 					String studentList[] = readFile().split(", ");
-					int id = new Random().nextInt(0,4);
+					int id = new Random().nextInt(0, 4);
 					System.out.println(studentList[id]);
 				} catch (Exception e) {
 				}
@@ -77,6 +80,8 @@ public class StudentList {
 				} catch (Exception e) {
 				}
 				System.out.println(Constants.LOADED);
+			} else {
+				System.out.println("Invalid Argument");
 			}
 		}
 	}
