@@ -13,9 +13,9 @@ public class StudentList {
 							new InputStreamReader(
 									new FileInputStream("students.txt")));
 					String r = s.readLine();
-					String i[] = r.split(", ");
-					for (String j : i) {
-						System.out.println(j);
+					String studentList[] = r.split(", ");
+					for (String studentName : studentList) {
+						System.out.println(studentName);
 					}
 				} catch (Exception e) {
 				}
@@ -28,10 +28,10 @@ public class StudentList {
 									new FileInputStream("students.txt")));
 					String r = s.readLine();
 					// System.out.println(r);
-					String i[] = r.split(", ");
-					Random x = new Random();
-					int y = x.nextInt(0, 4);
-					System.out.println(i[y]);
+					String studentList[] = r.split(", ");
+					Random rand = new Random();
+					int id =rand.nextInt(0, 4);
+					System.out.println(studentList[id]);
 				} catch (Exception e) {
 
 				}
@@ -41,12 +41,12 @@ public class StudentList {
 				try {
 					BufferedWriter s = new BufferedWriter(
 							new FileWriter("students.txt", true));
-					String t = args[len].substring(1);
+					String newStudent = args[len].substring(1);
 					Date d = new Date();
 					String df = "dd/mm/yyyy-hh:mm:ss a";
 					DateFormat dateFormat = new SimpleDateFormat(df);
-					String fd = dateFormat.format(d);
-					s.write("," + t + "\nList last updated on " + fd);
+					String formattedDate = dateFormat.format(d);
+					s.write("," + newStudent + "\nList last updated on " + formattedDate);
 					s.close();
 				} catch (Exception e) {
 
@@ -60,11 +60,11 @@ public class StudentList {
 							new InputStreamReader(
 									new FileInputStream("students.txt")));
 					String r = s.readLine();
-					String i[] = r.split(",");
+					String studentList[] = r.split(",");
 					boolean done = false;
-					String t = args[len].substring(1);
-					for (int idx = 0; idx < i.length && !done; idx++) {
-						if (i[idx].equals(t)) {
+					String newStudent = args[len].substring(1);
+					for (int idx = 0; idx < studentList.length && !done; idx++) {
+						if (studentList[idx].equals(newStudent)) {
 							System.out.println("We found it!");
 							done = true;
 						}
