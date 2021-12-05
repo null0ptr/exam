@@ -34,8 +34,7 @@ public class StudentList {
 				System.out.println(Constants.LOADING);
 				try {
 					String studentList[] = readFile().split(", ");
-					Random rand = new Random();
-					int id = rand.nextInt(0, 4);
+					int id = new Random().nextInt(0,4);
 					System.out.println(studentList[id]);
 				} catch (Exception e) {
 				}
@@ -45,10 +44,7 @@ public class StudentList {
 				try {
 					BufferedWriter s = new BufferedWriter(new FileWriter(Constants.FILENAME, true));
 					String newStudent = args[len].substring(1);
-					Date totalStudents = new Date();
-					String df = Constants.DATE_FORMAT;
-					DateFormat dateFormat = new SimpleDateFormat(df);
-					String formattedDate = dateFormat.format(totalStudents);
+					String formattedDate = new SimpleDateFormat(Constants.DATE_FORMAT).format(new Date());
 					s.write("," + newStudent + "\nList last updated on " + formattedDate);
 					s.close();
 				} catch (Exception e) {
@@ -72,8 +68,7 @@ public class StudentList {
 			} else if (args[len].contains("c")) {
 				System.out.println(Constants.LOADING);
 				try {
-					String totalStudents = readFile();
-					char a[] = totalStudents.toCharArray();
+					char a[] = readFile().toCharArray();
 					boolean in_word = false;
 					int count = 0;
 					for (char c : a) {
