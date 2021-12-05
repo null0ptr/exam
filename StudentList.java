@@ -6,10 +6,10 @@ public class StudentList {
 	static String readFile() throws IOException {
 		BufferedReader s=null;
 		try {
-			 s = new BufferedReader(new InputStreamReader(new FileInputStream("students.txt")));
+			 s = new BufferedReader(new InputStreamReader(new FileInputStream(Constants.FILENAME)));
 			return s.readLine();
 		} catch (Exception e) {
-			System.out.println("Couldn't find file");
+			System.out.println(Constants.NOT_FOUND);
 			return null;
 		}
 		finally {
@@ -21,7 +21,7 @@ public class StudentList {
 		// Check arguments
 		for (int len = 0; len < args.length; ++len) {
 			if (args[len].equals("a")) {
-				System.out.println("Loading data ...");
+				System.out.println(Constants.LOADING);
 				try {
 					String studentList[] = readFile().split(", ");
 					for (String studentName : studentList) {
@@ -29,37 +29,33 @@ public class StudentList {
 					}
 				} catch (Exception e) {
 				}
-				System.out.println("Data Loaded.");
+				System.out.println(Constants.LOADED);
 			} else if (args[len].equals("r")) {
-				System.out.println("Loading data ...");
+				System.out.println(Constants.LOADING);
 				try {
 					String studentList[] = readFile().split(", ");
 					Random rand = new Random();
 					int id = rand.nextInt(0, 4);
 					System.out.println(studentList[id]);
 				} catch (Exception e) {
-
 				}
-				System.out.println("Data Loaded.");
+				System.out.println(Constants.LOADED);
 			} else if (args[len].contains("+")) {
-				System.out.println("Loading data ...");
+				System.out.println(Constants.LOADING);
 				try {
-					BufferedWriter s = new BufferedWriter(
-							new FileWriter("students.txt", true));
+					BufferedWriter s = new BufferedWriter(new FileWriter(Constants.FILENAME, true));
 					String newStudent = args[len].substring(1);
 					Date totalStudents = new Date();
-					String df = "dd/mm/yyyy-hh:mm:ss a";
+					String df = Constants.DATE_FORMAT;
 					DateFormat dateFormat = new SimpleDateFormat(df);
 					String formattedDate = dateFormat.format(totalStudents);
 					s.write("," + newStudent + "\nList last updated on " + formattedDate);
 					s.close();
 				} catch (Exception e) {
-
 				}
-
-				System.out.println("Data Loaded.");
+				System.out.println(Constants.LOADED);
 			} else if (args[len].contains("?")) {
-				System.out.println("Loading data ...");
+				System.out.println(Constants.LOADING);
 				try {
 					String studentList[] = readFile().split(", ");
 					boolean done = false;
@@ -72,9 +68,9 @@ public class StudentList {
 					}
 				} catch (Exception e) {
 				}
-				System.out.println("Data Loaded.");
+				System.out.println(Constants.LOADED);
 			} else if (args[len].contains("c")) {
-				System.out.println("Loading data ...");
+				System.out.println(Constants.LOADING);
 				try {
 					String totalStudents = readFile();
 					char a[] = totalStudents.toCharArray();
@@ -93,7 +89,7 @@ public class StudentList {
 					System.out.println(count + " word(s) found");
 				} catch (Exception e) {
 				}
-				System.out.println("Data Loaded.");
+				System.out.println(Constants.LOADED);
 			}
 		}
 	}
