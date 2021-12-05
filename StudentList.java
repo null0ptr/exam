@@ -54,13 +54,17 @@ public class StudentList {
 				System.out.println(Constants.LOADING);
 				try {
 					String studentList[] = readFile().split(", ");
-					boolean done = false;
 					String newStudent = args[len].substring(1);
-					for (int idx = 0; idx < studentList.length && !done; idx++) {
+					boolean found = false;
+					for (int idx = 0; idx < studentList.length; idx++) {
 						if (studentList[idx].equals(newStudent)) {
-							System.out.println("We found it!");
-							done = true;
+							System.out.println(studentList[idx] + Constants.FOUND);
+							found = true;
+							break;
 						}
+					}
+					if (!found) {
+						System.out.println(newStudent + " is not included in the student list");
 					}
 				} catch (Exception e) {
 				}
